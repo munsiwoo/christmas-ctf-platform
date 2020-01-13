@@ -1,0 +1,85 @@
+<div class="py-3 text-center">
+  <div class="container">
+  	<div class="row py-2">
+  		<div class="col-md-12">
+            <div class="py-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-left">
+                            <p style="font-size: 30px; font-weight: 500; margin-top: 10px; text-shadow: 0px -3px 2px white;">User / Team information  <small>❔</small></p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <ul class="list-group">
+                                <li class="list-group-item mypage-list-group-item d-flex text-left">
+                                    <span><b style="font-weight: 600;">Name : </b>@var($user_info['username'])</span>
+                                </li>
+                                <li class="list-group-item mypage-list-group-item d-flex text-left">
+                                    <span><b style="font-weight: 600;">Email : </b>@var($user_info['email'])</span>
+                                </li>
+                                <li class="list-group-item mypage-list-group-item d-flex text-left">
+                                    <span><b style="font-weight: 600;">Country : </b>@var($user_info['country'])</span>
+                                </li>
+                                <li class="list-group-item mypage-list-group-item d-flex text-left">
+                                    <a href="/change_password" style="color: #20bf27; font-weight: 500;">Change password (Click)</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-12">
+                            <ul class="list-group">
+                                <li class="list-group-item mypage-list-group-item d-flex text-left">
+                                    <span><b style="font-weight: 600;">Team Name : </b>@var($user_info['teamname'])</span>
+                                </li>
+                                <li class="list-group-item mypage-list-group-item d-flex text-left">
+                                    <span><b style="font-weight: 600;">Captain : </b>@var($captain)</span>
+                                </li>
+                                <li class="list-group-item mypage-list-group-item d-flex text-left">
+                                    <span><b style="font-weight: 600;">Invite code : </b>@var($invite_code)</span>
+                                </li>
+                                <li class="list-group-item mypage-list-group-item d-flex text-left">
+                                    <span>
+                                        <a href="/team_info?team=@var(urlencode($_SESSION['teamname']))" style="color: #20bf27; font-weight: 500;">Team page (Click)</a>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+  		</div>
+        
+        <div class="col-md-12">
+            <div class="py-2" >
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                        <br>
+                            <div class="text-left">
+                                <p style="font-size: 30px; font-weight: 500;">List of probs I solved. <small>📋</small></p>
+                            </div>
+                            <ul class="list-group">
+                            @mun foreach($solved_probs as $solved_prob)
+                                <li class="list-group-item d-flex">
+                                    <div>
+                                        @var($solved_prob[1]) &nbsp;&nbsp;<small>(@var($solved_prob[2]))</small>
+                                    </div>
+                                </li>
+                            @endforeach
+
+                            @mun if(count($solved_probs) == 0)
+                                <li class="list-group-item d-flex">
+                                    <div>
+                                        There is no problem solved.
+                                    </div>
+                                </li>
+                            @endif
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

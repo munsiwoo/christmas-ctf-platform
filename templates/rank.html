@@ -1,0 +1,53 @@
+<script>
+    setInterval(function() {
+        $.post("/render/rank", (res) => {
+            document.querySelector("#rank_tbody").innerHTML = res;
+        });
+    }, @var(__RANK_REFRESH_DELAY__));
+</script>
+<div class="py-3">
+    <div class="container">
+    <p style="font-size: 40px; text-shadow: 0px -3px 2px white;"><i>Rank</i> <small>🏆</small></p>
+    <div class="row">
+        <div class="col-md-12 rank-list">
+        <br>
+        <div class="tab-content" style="margin-top: -20px; margin-bottom: -20px;">
+            <div class="tab-pane fade active show" id="all">
+                <table class="table" style="font-weight: 500;">
+                <thead style="border-top: 2px solid #4d4d4d00;">
+                <tr>
+                    <th style="width:10%; text-align: center; border-top: 0">Rank</th>
+                    <th style="width:30%; text-align: center; border-top: 0">Username</th>
+                    <th style="width:30%; text-align: center; border-top: 0">Point</th>
+                    <th style="width:30%; text-align: center; border-top: 0">Last submission</th>
+                </tr>
+                </thead>
+                <tbody id="rank_tbody">
+                    @mun foreach($rank_list as $place=>$rank)
+                        @mun if(htmlspecialchars_decode($rank['teamname']) === $_SESSION['teamname'])
+                        <tr style="word-break:break-all; background-color: rgba(199, 78, 78, 0.26);">
+                        @mun else
+                        <tr style="word-break:break-all;">
+                        @endif
+                            <td style="width: 10%; text-align: center; font-size: 16px;">
+                                @mun if($place == 0)
+                                    🥇
+                                @mun elif($place == 1)
+                                    🥈
+                                @mun elif($place == 2)
+                                    🥉
+                                @mun else
+                                    @var($rank['place'])
+                                @endif
+                            </td>
+                            <td style="width: 30%; text-align: center;"><a href="/team_info?team=@var(urlencode(htmlspecialchars_decode($rank['teamname'])))" style="color: white;">@var($rank['teamname'])</a></td>          
+                            <td style="width: 30%; text-align: center;">@var($rank['point'])</td>
+                            <td style="width: 30%; text-align: center;">@var($rank['last_auth'])</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+</div>

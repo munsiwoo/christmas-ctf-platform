@@ -1,0 +1,43 @@
+<script>
+function edit_config() {
+    let data = {
+        "start_date":$("#start_date").val(),
+        "start_time":$("#start_time").val(),
+        "end_date":$("#end_date").val(),
+        "end_time":$("#end_time").val(),
+        "max_point":$("#max_point").val(),
+        "min_point":$("#min_point").val()
+    };
+    $.post("/admin/edit_config", data, function(res) {
+        let result = JSON.parse(res);
+        alert(result['message']);
+    });
+}
+</script>
+
+<div class="py-2 text-center">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-left">
+                <form class="login-form" onsubmit="edit_config(); return false;">
+                    <label style="font-weight: 500;" >CTF 시작 시간 (카운트 다운)</label>
+                    <input type="date" id="start_date" name="start_date" placeholder="Ctf start date" value="@var($start_date)"><br>
+                    <input type="time" id="start_time" name="start_time" placeholder="Ctf start time" value="@var($start_time)" step="1"><br>
+
+                    <label style="font-weight: 500; margin-top: 10px;" >CTF 종료 시간 (인증 막기)</label>
+                    <input type="date" id="end_date" name="end_date" placeholder="Ctf end date" value="@var($end_date)"><br>
+                    <input type="time" id="end_time" name="end_time" placeholder="Ctf end time" value="@var($end_time)" step="1"><br>
+
+                    <label style="font-weight: 600; margin-top: 10px;" >기본 / 최소 포인트</label>
+                    <input type="number" id="max_point" name="max_point" placeholder="Max point" value="@var($max_point)"><br>
+                    <input type="number" id="min_point" name="min_point" placeholder="Min point" value="@var($min_point)"><br>
+                    <hr>
+                    <input type="submit" class="btn btn-lg btn-danger" value="Save">
+                </form>
+                <br>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<script>
+    function check_flag(obj, no) {
+        let flag = obj.flag.value;
+        let data = {"no":no, "flag":flag};
+        $.post("/check_flag", data, function(res) {
+            res = JSON.parse(res);
+            alert(res['message']);
+
+            if(res['logout'])
+                location.href = "/logout";
+            
+            if(res['result'])
+                location.reload();
+        });
+    }
+    function get_solved_teams(prob_no) {
+        let data = {"prob_no": prob_no};
+        $.post("/solved_teams", data, function(res) {
+            let result = JSON.parse(res);
+            let teams = [];
+            if(result['status']) {
+                for(team of result['teams'])
+                    teams.push($("<textarea/>").html(team).text());
+                alert(teams.join("\n"));
+            }
+            else {
+                alert('Not solve yet.');
+            }
+        });
+    }
+</script>
+
+<br>
+<div class="py-1 text-center">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12" style="font-weight: 400;">
+            <div class="text-left prob-categories">
+                <a href="/prob" class="btn prob-category-btn">&nbsp;&nbsp;ALL&nbsp;&nbsp;</a>
+                @mun foreach($categories as $category)
+                    <a href="?category=@var(urlencode($category))" class="btn prob-category-btn">&nbsp;@var(htmlspecialchars($category))&nbsp;</a>
+                @endforeach
+            </div>
+            <hr>
+            @mun foreach($prob_list as $prob)
+                @mun if($prob['solved'])
+                    <div class="card bg-light mb-3" style="text-align: left;box-shadow: 3px 3px 3px 1px #aca2a24f; border: 0;">
+                        <div class="card-header solved-prob" style="font-size: 14px;"><div>🎁 <font style="font-weight:600;">@var($prob['name'])</font> (@var($prob['field']) / @var($prob['point'])pts / <span onclick="get_solved_teams(@var($prob['no']))" style="cursor: pointer; color: #00a8ff;">@var($prob['solver_cnt']) solved</span> / @var($prob['first_solver']))</div></div>
+                        <div class="card-body" style="text-align: left; background-color: rgba(177, 255, 124, 0.27);">
+                            <p class="card-text" style="font-size: 14px; padding: 0;">@var(nl2br($prob['contents']))</p>
+                        </div>
+                    </div>
+                @mun else
+                    <div class="card bg-light mb-3" style="text-align: left;box-shadow: 3px 3px 3px 1px #aca2a24f; border: 0;">
+                        <div class="card-header" style="font-size: 14px;"><div>🎁 <font style="font-weight:600;">@var($prob['name'])</font> (@var($prob['field']) / @var($prob['point'])pts / <span onclick="get_solved_teams(@var($prob['no']))" style="cursor: pointer; color: #00a8ff;">@var($prob['solver_cnt']) solved</span> / @var($prob['first_solver']))</div> </div>
+                        <div class="card-body" style="text-align: left;">
+                            <p class="card-text" style="font-size: 14px; padding: 0;">@var(nl2br($prob['contents']))</p>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <form onsubmit="check_flag(this, @var($prob['no'])); return false;">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control flag-input" name="flag" placeholder="FLAG">
+                                            <div class="input-group-append">
+                                                <button class="btn flag-submit" type="submit">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+        </div>
+    </div>
+</div>

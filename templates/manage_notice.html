@@ -1,0 +1,93 @@
+<script>
+    function add_notice(obj) {
+        let data = {
+            'contents': obj.contents.value,
+            'mode': "add",
+        };
+
+        $.post("/admin/manage_notice", data, function(res) {
+            if(JSON.parse(res)['result']) {
+                alert("추가 완료");
+                location.reload();
+            }
+            else {
+                alert("추가 실패");
+            }
+        });
+    }
+    function edit_notice(obj) {
+        let data = {
+            'contents': obj.contents.value,
+            'no': obj.no.value,
+            'mode': "edit",
+        };
+
+        $.post("/admin/manage_notice", data, function(res) {
+            if(JSON.parse(res)['result']) {
+                alert("수정 완료");
+                location.reload();
+            }
+            else {
+                alert("수정 실패");
+            }
+        });
+
+    }
+    function delete_notice(obj) {
+        let data = {
+            'no': obj.value,
+            'mode': 'delete',
+        };
+
+        $.post("/admin/manage_notice", data, function(res) {
+            if(JSON.parse(res)['result']) {
+                alert("삭제 완료");
+                location.reload();
+            }
+            else {
+                alert("삭제 실패");
+            }
+        });
+    }
+</script>
+<style>
+    .notice-form textarea {
+        width: 100%;
+        height: 150px;
+        border-radius: 20px;
+        border: grey 1px solid;
+        outline: none;
+        padding: 10px;
+    }
+</style>
+<div class="py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p style="font-size:25px; margin-top: 10px; font-weight: 400;"><i>Notices</i> 📣</p>
+        
+        <form class="notice-form" onsubmit="add_notice(this); return false;">
+            <textarea style="width: 100%;" name="contents" autofocus=""></textarea><br>
+            <input type="submit" class="btn" value="공지" style="
+                background-color: #00000094;
+                color: white;
+                width: 150px;
+                border-radius: 50px;
+            ">
+        </form>
+        <hr>
+		@mun foreach($notice_list as $notice)
+            <form class="notice-form" onsubmit="edit_notice(this); return false;">
+                <div class="card bg-light mb-3" style="text-align: left; border: 0; border-radius: 20px; background-color: #ffffff00;">
+                    <div class="card-body" style="text-align: left; background-color: rgba(32, 27, 27, 0.4);">
+                        <p class="card-text" style="font-size: 14px;"><textarea name="contents">@var(htmlspecialchars($notice['contents']))</textarea></p>
+                        <b style="color: white;">@var($notice['date'])</b>
+                        <input type="hidden" name="no" value="@var($notice['no'])" id="notice@var($notice['no'])">
+                        <input type="button" class="btn" value="삭제" onclick="delete_notice(document.querySelector('#notice@var($notice['no'])'))" style="margin-left: 10px; background-color: white; border-radius: 30px; width: 100px;">
+                        <input type="submit" class="btn" value="수정" style="background-color: white; background-color: white; border-radius: 30px; width: 100px;">
+                    </div>
+                </div>
+            </form>
+        @endforeach
+	</div>
+</div>

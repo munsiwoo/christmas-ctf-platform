@@ -1,0 +1,16 @@
+<div class="py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p style="font-size:40px; margin-top: 10px; text-shadow: 0px -3px 2px white;"><i>Notice</i> <small>📣</small></p>
+
+		@mun foreach($notice_list as $notice)
+            <div class="card bg-light mb-3" style="text-align: left;border: 0;box-shadow: 3px 3px 10px 0px #a2a2a2;">
+                <div class="card-body" style="text-align: left; background-color: #fff;">
+                    <p class="card-text" style="font-size: 16px; font-weight: 350;">@var(nl2br($notice['contents']))</p>
+                    <b style="color: grey;">@var($notice['date'])</b>
+                </div>
+            </div>
+        @endforeach
+	</div>
+</div>

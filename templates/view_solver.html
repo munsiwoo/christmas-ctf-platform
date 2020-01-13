@@ -1,0 +1,32 @@
+<div class="py-3">
+    <div class="container">
+        <br>
+    <p style="font-size:30px;"><i>Solvers</i> 🔎</p>
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="tab-content">
+
+          <div class="tab-pane fade active show" id="all">
+            <table class="table">
+              <thead>
+                <tr>
+                    <th style="width:10%; text-align: center;">#</th>
+                    <th style="width:20%; text-align: center;">Prob</th>
+                    <th style="width:60%; text-align: center;">Username</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @mun foreach($solvers as $solver)
+                        <tr style="word-break:break-all;">
+                            <td style="width: 10%; text-align: center; font-weight: 400;">@var($solver['prob_no'])</td>
+                            <td style="width: 20%; text-align: center; font-weight: 400;">@var($solver['prob_name'])</td>
+                            <td style="width: 70%; text-align: center; font-weight: 500;">@var($solver['username'])</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+</div>

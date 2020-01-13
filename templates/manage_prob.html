@@ -1,0 +1,179 @@
+<script>
+	function add_prob(obj) {
+		let data = {
+			'name': obj.name.value,
+            'field': obj.field.value,
+			'contents': obj.contents.value,
+            'flag': obj.flag.value,
+            'mode': "add",
+		};
+
+		$.post("/admin/manage_prob", data, function(res) {
+			if(JSON.parse(res)['result']) {
+                alert("추가 완료");
+                location.href = "/admin/manage_prob?" + new Date().getTime() + "#added";
+            }
+            else
+                alert("추가 실패");
+		});
+	}
+
+    function delete_prob(prob_no) {
+        let yn = confirm("정말로 삭제하시겠습니까?");
+        if(yn == true) {
+            $.post("/admin/manage_prob", {"prob_no":prob_no, "mode":"delete"}, function(res) {
+                if(JSON.parse(res)['result']) {
+                    alert("삭제 완료");
+                    location.reload();
+                }
+                else
+                    alert("삭제 실패");
+            });
+        }
+    }
+
+    function edit_prob(obj, prob_no) {
+        let data = {
+            'prob_no': prob_no,
+            'name': obj.name.value,
+            'field': obj.field.value,
+            'contents': obj.contents.value,
+            'flag': obj.flag.value,
+            'open': obj.open.value,
+            'mode': "edit",
+        };
+
+        $.post("/admin/manage_prob", data, function(res) {
+            if(JSON.parse(res)['result']) {
+                alert("수정 완료");
+                location.reload();
+            }
+            else
+                alert("수정 실패");
+        });
+    }
+
+    function change_open_checkbox(img, obj) {
+        if(obj.value == "1") {
+            img.src = "/static/img/unchecked.png";
+            obj.value = "0";
+        }
+        else {
+            img.src = "/static/img/checked.png";
+            obj.value = "1";
+        }
+    }
+</script>
+
+<style>
+    .add-prob-form input[type="text"] {
+        font-size: 13px;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 15px;
+        border: silver 1px solid;
+        outline: none;
+    }
+    .add-prob-form input[name="name"] {
+        width: 50%;
+    }
+    .add-prob-form input[name="field"] {
+        width: 30%;
+    }
+    .add-prob-form input[name="flag"] {
+        width: 100%;
+    }
+    .add-prob-form input[type="submit"] {
+        border-radius: 15px;
+        width: 100px;
+    }
+    .add-prob-form input[type="button"] {
+        border-radius: 15px;
+        width: 100px;
+    }
+    .add-prob-form textarea {
+        font-size: 13px;
+        width: 100%;
+        height: 130px;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 15px;
+        border: silver 1px solid;
+        outline: none;
+    }
+    .add-prob-form-submit {
+        background-color: #676767;
+        font-size: 13px;
+        border: 0;
+        outline: 0;
+        color: white;
+    }
+</style>
+
+<div class="py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <p style="font-size:25px; font-weight: 400;"><i>Add prob </i> <small>📌</small></p>
+                <form class="add-prob-form" onsubmit="add_prob(this); return false;">
+                    <div class="card bg-light mb-3" style="text-align: left;">
+                        <div class="card-header" style="font-size: 13px;">🎁
+                            <input type="text" name="name" placeholder="Problem name" required="">
+                            <input type="text" name="field" placeholder="Problem field" required="">
+                        </div>
+                        <div class="card-body" style="text-align: left;">
+                            <textarea name="contents" placeholder="Problem description (you can use html)" required=""></textarea>
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <input type="text" name="flag" placeholder="FLAG{...}" required="">
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <input class="btn add-prob-form-submit" value="문제 추가" type="submit">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <hr>
+                <p style="font-size:25px; font-weight: 400;"><i>Prob list & edit </i> <small>🔧</small></p>
+                @mun foreach($prob_list as $prob)
+                    <form class="add-prob-form" onsubmit="edit_prob(this, @var($prob['no'])); return false;">
+                        <div class="card bg-light mb-3" style="text-align: left;">
+                            <div class="card-header" style="font-size: 13px;">🎁
+                                <input type="text" name="name" placeholder="Problem name" value="@var(htmlspecialchars($prob['name']))">
+                                <input type="text" name="field" placeholder="Problem field" value="@var(htmlspecialchars($prob['field']))">
+                            </div>
+                            <div class="card-body" style="text-align: left;">
+                                <textarea name="contents" placeholder="Problem description (you can use html)">@var(htmlspecialchars($prob['contents']))</textarea>
+                                <div class="row">
+                                    <div class="col-md-6 text-left">
+                                        <input type="text" name="flag" placeholder="비워두면 기존 플래그 유지됨">
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        @mun if($prob['open'])
+                                            <input type="hidden" name="open" value="1" id="open@var($prob['no'])">
+                                            <img src="/static/img/checked.png" style="width:32px;height:auto;cursor: pointer;" onclick="change_open_checkbox(this, document.querySelector('#open@var($prob['no'])'))">
+                                        @mun else
+                                            <input type="hidden" name="open" value="0" id="open@var($prob['no'])">
+                                            <img src="/static/img/unchecked.png" style="width:32px;height:auto;cursor: pointer;" onclick="change_open_checkbox(this, document.querySelector('#open@var($prob['no'])'))">
+                                        @endif
+                                        <input class="btn add-prob-form-submit" value="문제 삭제" onclick="delete_prob(@var($prob['no'])); return false;" type="button">
+                                        <input class="btn add-prob-form-submit" value="문제 수정" type="submit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                @endforeach
+
+
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div id="added"></div>
+    </div>
+</div>

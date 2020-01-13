@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/theme.css?20191128" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css?@var($timestamp)" type="text/css">
+    <link rel="stylesheet" href="/static/css/snow.css" type="text/css">
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&amp;display=swap" rel="stylesheet"> 
+    <meta property="og:title" content="Christmas CTF">
+    <meta property="og:url" content="https://x-mas.aleph.kr/">
+    <meta property="og:description" content="Welcome to Christmas CTF!">
+    <meta property="og:image" content="/static/img/thumb.png">
+    <title>@var($title)</title>
+</head>
+<body id="wrapper">
+<div class="winter-is-coming">
+    <div class="snow snow--near"></div>
+    <div class="snow snow--near snow--alt"></div>
+
+    <div class="snow snow--mid"></div>
+    <div class="snow snow--mid snow--alt"></div>
+
+    <div class="snow snow--far"></div>
+    <div class="snow snow--far snow--alt"></div>
+</div>
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #b32020; box-shadow: 0px 5px 10px 5px #d3a4a4;">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <b style="font-size: 20px; font-weight: 500;">🎄 Christmas CTF</b>
+        </a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
+            <ul class="navbar-nav" style="font-size: 18px;">
+                @mun foreach($top_menu as $name=>$url)
+                    <li class="nav-item"><a class="nav-link" href="@var($url)">@var($name)</a></li>
+                @endforeach 
+            </ul>
+        </div>
+    </div>
+</nav>

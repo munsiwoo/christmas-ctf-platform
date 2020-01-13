@@ -1,0 +1,254 @@
+﻿* {
+    overflow-x: hidden;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.rule-and-price .list-group {
+    height:260px;
+}
+.rule-and-price .list-group-item {
+    height:260px;
+}
+
+.index-say {
+    font-family: 'Pacifico', sans-serif;
+    font-size: 70px;
+    font-weight: 600;
+    color: #ffffff;
+    overflow-y: hidden;
+    line-height: 100px;
+    text-shadow: 5px 5px 15px #9d9d9d;
+    overflow-wrap: break-word;
+}
+
+.index-countdown {
+    font-family: 'Pacifico', sans-serif;
+    text-shadow: 5px 5px 10px #c2c2c2;
+    font-size: 50px;
+}
+.ui-countdown-value[id="day"] {
+    color: #fe5c5c;
+}
+.ui-countdown-value[id="hour"] {
+    color: #ffa200;
+}
+.ui-countdown-value[id="minute"] {
+    color: #008000d6;
+}
+
+.text-rainbow {
+  background-image: linear-gradient(90deg, red, orange, yellow, green, blue, navy, purple);
+  -webkit-background-clip: text;
+  color: transparent;
+
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.list-group-item {
+    background-color: #00000082;
+    color: white;
+    border: 0;
+}
+
+.list-group-item a {
+    color: white;
+    text-decoration: none;
+}
+
+.index-daemun {
+    padding: 10px;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.2;
+    overflow-y: hidden;
+    margin-top: 15px;
+    margin-bottom: -5px;
+}
+.index-rule {
+    font-size:25px;
+    font-weight: 900;
+    margin-top: 15px;
+}
+.index-daemun-logo {
+    width: 55px;
+    height: auto;
+    margin-top: -10px;
+}
+.index-jumbotron {
+    background-color: #0000008c;
+    box-shadow: 1px 2px 3px 0px #bfbfbf;
+    border-radius: 5px;
+}
+.index-lead {
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: -15px;
+    margin-bottom: -5px;
+}
+.index-rule-list {
+    font-size: 15px;
+    font-weight: 400;
+}
+.index-prize-list {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+
+#wrapper {
+     position: relative;
+}
+
+#wrapper:after {
+    content : "";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: url(/static/img/bg_img.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 120%;
+    opacity : 0.35;
+    z-index: -999;
+}
+
+.login-form input:not([type="radio"]), .login-form select {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 3px;
+    border: #fff 0.5px solid;
+    border-radius: 0;
+    outline: none;
+    font-size: 15px;
+}
+
+.login-form input[type="submit"] {
+    border: 0;
+}
+
+.register-form-usertype {
+    border: #fff 0.5px solid;
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 5px;
+    background-color: #f3f3f3ba;
+    font-size: 15px;
+}
+
+.radius_none {
+    border-radius: 0;
+    font-size: 28px;
+}
+
+.box {
+    overflow: hidden;
+    font-size: 30px;
+}
+
+.flag-input {
+    border-radius: 15px;
+    border: silver 0.5px solid;
+    outline: none;
+    font-size: 13px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+.flag-submit {
+    border-radius: 0 10px 10px 0;
+    background-color: #676767;
+    font-size: 13px;
+    border: 0;
+    outline: 0;
+    color: white;
+}
+.form-control:focus {
+    border-color: #476767;
+    box-shadow: 0 0 0;
+}
+.form-control:hover {
+    border-color: #476767;
+    box-shadow: 0 0 0;
+}
+.btn:focus {
+    border-color: silver;
+    box-shadow: 0 0 0;
+}
+
+.solved-prob {
+    font-size: 13px;
+    background-color: rgba(136, 210, 86, 0.27);
+}
+
+
+.welcome {-webkit-animation: welcome 2.5s linear infinite;}
+@-webkit-keyframes welcome {
+    0% { color: #fff; }
+    33% { color: #000; }
+    77% { color: #000; }
+    100% { color: #fff; }
+}
+.main-a {
+    color: #3249ff;
+    font-weight: 600;
+    padding-left: 3px;
+}
+.main-a:hover {
+    color: #3249ff;
+    font-weight: 600;
+    padding-left: 3px;
+}
+
+a.top {
+    position: fixed;
+    bottom: 35px;
+    right: 30px;
+    z-index: 99;
+}
+
+.mypage-list-group-item {
+    overflow-x: hidden;
+    word-break: break-all;
+}
+
+.prob-category-btn {
+    color: black;
+    border: #9e9e9e 0.6px solid;
+    font-weight: 400;
+    padding: 5px 10px 5px 10px;
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 15px;
+    margin: 4px;
+    background-color: white;
+}
+.prob-category-btn:hover {
+    color: black;
+    text-decoration: none;
+    background-color: #ebebeb;
+}
+.prob-categories {
+    padding: 10px;
+}
+
+.rank-list {
+    background-color: #00000096;
+    font-size: 16px;
+    border-radius: 4px;
+    color: white;
+    height: 100%;
+    overflow-y: hidden;
+}

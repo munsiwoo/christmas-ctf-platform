@@ -1,0 +1,24 @@
+<tbody id="rank_tbody">
+    @mun foreach($rank_list as $place=>$rank)
+        @mun if(htmlspecialchars_decode($rank['teamname']) === $_SESSION['teamname'])
+        <tr style="word-break:break-all; background-color: rgba(199, 78, 78, 0.26);">
+        @mun else
+        <tr style="word-break:break-all;">
+        @endif
+            <td style="width: 10%; text-align: center; font-size: 16px;">
+                @mun if($place == 0)
+                    🥇
+                @mun elif($place == 1)
+                    🥈
+                @mun elif($place == 2)
+                    🥉
+                @mun else
+                    @var($rank['place'])
+                @endif
+            </td>
+            <td style="width: 30%; text-align: center;"><a href="/team_info?team=@var(urlencode(htmlspecialchars_decode($rank['teamname'])))" style="color: white;">@var($rank['teamname'])</a></td>          
+            <td style="width: 30%; text-align: center;">@var($rank['point'])</td>
+            <td style="width: 30%; text-align: center;">@var($rank['last_auth'])</td>
+        </tr>
+    @endforeach
+</tbody>

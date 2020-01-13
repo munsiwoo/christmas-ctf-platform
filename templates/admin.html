@@ -1,0 +1,41 @@
+<script>
+function all_prob(mode) {
+    let yn = confirm("다시 한번 확인");
+    if(yn == true) {
+        $.post("/admin/all_prob", {"mode":mode});
+        if(mode == 'open')
+            alert('모든 문제를 오픈했습니다.');
+        else
+            alert('모든 문제를 닫았습니다.');
+    }
+}
+</script>
+
+<div class="py-5 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+
+                <p style="font-size:40px; margin-top: 10px;"><i>Admin page</i> <small>🚀</small></p>
+
+                <ul class="list-group" style="cursor:pointer;font-size: 15px;border: #626262 1px solid;border-radius: 10px;">
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><a href="/admin/manage_prob">문제 관리</a></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><a href="/admin/manage_notice">공지 관리</a></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><a href="/admin/auth_log">인증 로그</a></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><a href="/admin/view_solver">풀이자 확인</a></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><a href="/admin/reset_password">유저 비번 초기화</a></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><a href="/admin/user_list">유저 리스트</a></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><a href="/admin/delete_team">팀 삭제</a></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><a href="/admin/edit_config">CTF 설정</a></li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center" onclick="all_prob('open')">모든 문제 오픈</li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center" onclick="all_prob('close')">모든 문제 닫기</li>
+                </ul>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+    </div>
+
+</div>

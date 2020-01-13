@@ -1,0 +1,31 @@
+.index-big {
+    font-size: 6rem;
+    line-height: 9rem;
+}
+.index-sponsor-text {
+    text-align: center;
+    color: #ffffffdd;
+}
+
+.index-emerald {
+    font-size: 6rem;
+    font-weight: 400;
+    text-shadow: 5px 5px 1rem #60f060;
+}
+
+.index-diamond {
+    font-size: 4rem;
+    font-weight: 400;
+    text-shadow: 5px 5px 1rem #6060f0;
+}
+
+.index-gold {
+    font-size: 3rem;
+    font-weight: 400;
+    text-shadow: 5px 5px 1rem #f0f060;
+}
+
+.tracking-in-contract {
+    -webkit-animation: tracking-in-contract 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+            animation: tracking-in-contract 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}

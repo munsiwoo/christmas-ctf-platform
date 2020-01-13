@@ -1,0 +1,21 @@
+<tbody>
+    @mun foreach($auth_logs as $auth_log)
+        @mun if($auth_log['is_flag'])
+            <tr style="word-break:break-all; background-color: rgba(93, 255, 26, 0.26);">
+                <td style="text-align: center;">@var($auth_log['username'])<br>(@var($auth_log['teamname']))</td>
+                <td style="text-align: center;">@var($auth_log['prob_name'])</td>
+                <td style="text-align: center;">@var($auth_log['ip'])</td>
+                <td style="text-align: center;">@var($auth_log['flag'])</td>
+                <td style="text-align: center;">@var($auth_log['auth_date'])</td>
+            </tr>
+        @mun else
+            <tr style="word-break:break-all;">
+                <td style="text-align: center;">@var($auth_log['username'])<br>(@var($auth_log['teamname']))</td>
+                <td style="text-align: center;">@var($auth_log['prob_name'])</td>
+                <td style="text-align: center;">@var($auth_log['ip'])</td>
+                <td style="text-align: center;">@var($auth_log['flag'])</td>
+                <td style="text-align: center;">@var($auth_log['auth_date'])</td>
+            </tr>
+        @endif
+    @endforeach
+</tbody>

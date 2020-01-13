@@ -1,0 +1,46 @@
+<script>
+function user_login() {
+    let data = {
+    	"username":$("#username").val(),
+    	"password":$("#password").val()
+    };
+    
+    $.post("/login", data, function(res) {
+        let result = JSON.parse(res);
+        if(result['status']) {
+            location.href = "/";
+        }
+        else {
+            alert("Login failed");
+        }
+    });
+}
+</script>
+
+<div class="py-2 text-center">
+  <div class="container py-4">
+    
+    <div class="row">
+        <div class="col-md-12 position-fixed" style="top: 0; z-index: -99;">
+            <img src="/static/img/left_deco2.png" style="width: 150px; left: 90%; position: fixed;">
+            <img src="/static/img/left_deco1.png" style="width: 150px; left: 80%; position: fixed">
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <div style="font-weight: 500; margin-left: 30%">Enjoy~ </div>
+        <img src="/static/img/sibariza.png" style="width:100px; height: auto; margin-left: 40%;">
+        <form class="login-form" onsubmit="user_login(); return false;">
+        	<input type="text" id="username" name="username" placeholder="Username" maxlength="50" autofocus=""><br>
+        	<input type="password" id="password" placeholder="Password" maxlength="50"><br>
+            <hr>
+          <input type="submit" class="btn btn-lg btn-danger" value="Login">
+        </form>
+        <br>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+</div>

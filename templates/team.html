@@ -1,0 +1,67 @@
+<div class="py-3 text-center">
+  <div class="container">
+    <div class="row py-2">
+
+        <div class="col-md-12">
+            <div class="py-2">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-md-12 text-left">
+                            <p style="font-size: 35px; font-weight: 500; margin-top: 10px; overflow-wrap: break-word; text-shadow: 0px -3px 2px white;">@var($team_info['teamname'])  <small>👪</small></p>
+                        </div>
+
+                        <div class="col-md-12">
+                            <ul class="list-group">
+                                @mun foreach($team_info['members'] as $member)
+                                    <li class="list-group-item mypage-list-group-item d-flex text-left">
+                                        <span><b style="font-weight: 600;">@var($member[0]) : </b>@var($member[1])</span>
+                                    </li>
+                                @endforeach
+                                <li class="list-group-item mypage-list-group-item d-flex text-left">
+                                    <span><b style="font-weight: 600;">Point : </b>@var($team_info['point'])pts</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                        <br>
+                            <div class="text-left">
+                                <p style="font-size: 30px; font-weight: 500;">Solved probs <small>📋</small></p>
+                            </div>
+                            <ul class="list-group">
+                            @mun foreach($team_info['solved_probs'] as $solved_prob)
+                                <li class="list-group-item d-flex text-left">
+                                    <div>
+                                        @var($solved_prob[0]) &nbsp;<small>(@var($solved_prob[1]) / @var($solved_prob[2]))</small>
+                                    </div>
+                                </li>
+                            @endforeach
+
+                            @mun if(count($team_info['solved_probs']) == 0)
+                                <li class="list-group-item d-flex text-left">
+                                    <div>
+                                        There is no problem solved.
+                                    </div>
+                                </li>
+                            @endif
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
