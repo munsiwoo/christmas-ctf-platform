@@ -1,7 +1,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/munsiwoo/Christmas-CTF.svg)](https://github.com/munsiwoo/Christmas-CTF/stargazers)
 [![GitHub license](https://img.shields.io/github/license/munsiwoo/Christmas-CTF.svg)](https://github.com/munsiwoo/Christmas-CTF/blob/master/LICENSE)
 
-# Christmas-CTF
+# Christmas-CTF-Platform
 ### What is this?
 
 This is the platform I used for Christmas CTF 2019. (The Challenges is [here](https://github.com/Aleph-Infinite/2019-Christmas-CTF).)  
