@@ -5,7 +5,7 @@
 ### What is this?
 
 This is the platform I used for Christmas CTF 2019.  
-I developed it in pure PHP and designed it with MVC pattern.  
+I developed it in pure PHP and designed it with MVC pattern. (`Apache2` + `PHP7` + `MariaDB`)  
 It is a Jeopardy platform and uses Dynamic Scoring.  
 
 > Dynamic Scoring pseudo code (default, min_point=100 / max_point=1000)
