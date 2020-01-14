@@ -1,0 +1,5 @@
+RewriteEngine On
+
+RewriteRule "^static($|/.*)" - [L]
+RewriteRule "^uploads($|/.*)" - [L]
+RewriteRule "^(.*)$" "index.php" [QSA,NC,L]
