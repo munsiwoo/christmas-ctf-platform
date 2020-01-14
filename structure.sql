@@ -65,7 +65,7 @@ CREATE TABLE `mun_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mun_users` (`usertype`, `teamname`, `username`, `password`, `email`, `country`, `last_auth`, `reg_date`) VALUES
-('captain', 'admin', 'admin', '8c37132e767e7577d9fe1018f4bcff37', 'mun.xiwoo@gmail.com', 'Korea, Republic of', '2020-01-13 08:44:18', '2020-01-13 08:44:18'),
+('captain', 'admin', 'admin', '29dd3ed9ee5f0c2af3825c46193e8d02', 'mun.xiwoo@gmail.com', 'Korea, Republic of', '2020-01-13 08:44:18', '2020-01-13 08:44:18'),
 ('captain', 'test', 'test_captain', 'e702ead743a40df29cb2bb213c881c28', 'test_captain@test.com', 'Korea, Republic of', '2020-01-13 08:45:39', '2020-01-13 08:45:39'),
 ('member', 'test', 'test_member', '21857d911505b8703278b4e57e25b255', 'test_member@test.com', 'Korea, Republic of', '2020-01-13 08:45:39', '2020-01-13 08:46:04');
 
