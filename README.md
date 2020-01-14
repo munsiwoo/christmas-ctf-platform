@@ -8,14 +8,14 @@ This is the platform I used for Christmas CTF 2019.
 I developed it in pure PHP and designed it with MVC pattern.  
 It is a Jeopardy platform and uses Dynamic Scoring.  
 
-> pseudo code (default, min_point=100 / max_point=1000)
+> Dynamic Scoring pseudo code (default, min_point=100 / max_point=1000)
 
 ```
 point = (min_point+(max_point-min_point)/(1+(max(0,(solve_cnt)-1)/4.0467890)**3.84))
 point = round(value)
 ```
 
-> default account (when password salt is 255d943bf821b38d386935b775a01a21)
+> Default account (when password salt is 255d943bf821b38d386935b775a01a21)
 
 | username     | password     |
 | ------------ | ------------ |
