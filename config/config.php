@@ -41,6 +41,7 @@ define('__GUEST_MENU__', [
 
 define('__HIDDEN_HEADER__', [ // For pages with only text
     '/get_countdown',
+    '/robots.txt',
 ]);
 
 
