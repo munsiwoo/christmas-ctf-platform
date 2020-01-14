@@ -34,4 +34,4 @@ The platform is based on [@munsiwoo/simple-mvc-php](https://github.com/munsiwoo/
 
 ## How to install?
 
-I will be uploading Dockerfile soon..
+I will upload Dockerfile soon.
