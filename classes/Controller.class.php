@@ -296,8 +296,8 @@ class Controller {
                 ]);
                 break;
 
-
             case '/robots.txt' :
+                header('Content-Type: text/plain; charset=UTF-8');
                 $MunTemplate->render_template('robots.txt');
                 break;
 
