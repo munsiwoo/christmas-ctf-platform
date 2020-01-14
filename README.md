@@ -4,7 +4,7 @@
 # Christmas-CTF
 ### What is this?
 
-This is the platform I used for Christmas CTF 2019.  
+This is the platform I used for Christmas CTF 2019. (The Challenge is [here](https://github.com/Aleph-Infinite/2019-Christmas-CTF).)  
 I developed it in pure PHP and designed it with MVC pattern. (`Apache2` + `PHP7` + `MariaDB`)  
 It is a Jeopardy platform and uses Dynamic Scoring.  
 
