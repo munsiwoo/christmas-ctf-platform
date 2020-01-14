@@ -1,7 +1,7 @@
-[![GitHub stars](https://img.shields.io/github/stars/munsiwoo/Christmas-CTF.svg)](https://github.com/munsiwoo/Christmas-CTF/stargazers)
-[![GitHub license](https://img.shields.io/github/license/munsiwoo/Christmas-CTF.svg)](https://github.com/munsiwoo/Christmas-CTF/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/munsiwoo/christmas-ctf-platform.svg)](https://github.com/munsiwoo/christmas-ctf-platform/stargazers)
+[![GitHub license](https://img.shields.io/github/license/munsiwoo/christmas-ctf-platform.svg)](https://github.com/munsiwoo/christmas-ctf-platform/blob/master/LICENSE)
 
-# Christmas-CTF-Platform
+# Christmas CTF Platform
 ### What is this?
 
 This is the platform I used for Christmas CTF 2019. (The Challenges is [here](https://github.com/Aleph-Infinite/2019-Christmas-CTF).)  
@@ -15,9 +15,9 @@ point = (min_point+(max_point-min_point)/(1+(max(0,(solve_cnt)-1)/4.0467890)**3.
 point = round(value)
 ```
 
-> Default account (when password salt is 255d943bf821b38d386935b775a01a21)
+> Default account (when password salt is "255d943bf821b38d386935b775a01a21")
 
-| username     | password     |
+| Username     | Password     |
 | ------------ | ------------ |
 | admin        | admin        |
 | test_captain | test_captain |
