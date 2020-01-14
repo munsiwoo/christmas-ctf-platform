@@ -296,6 +296,11 @@ class Controller {
                 ]);
                 break;
 
+
+            case '/robots.txt' :
+                $MunTemplate->render_template('robots.txt');
+                break;
+
             default :
                 header("HTTP/1.1 404 Not Found");
                 $MunTemplate->render_template('404.html');
