@@ -1,10 +1,10 @@
 <?php
 class Render extends mysqli {
-	function __construct() {
-		parent::__construct(__HOST__, __USER__, __PASS__, __NAME__);
-	}
+    function __construct() {
+        parent::__construct(__HOST__, __USER__, __PASS__, __NAME__);
+    }
 
-	function get_top_menu($is_login, $is_admin) { // 상단 메뉴바
+    function get_top_menu($is_login, $is_admin) { // 상단 메뉴바
         $retval = $is_login ? __USER_MENU__ : __GUEST_MENU__;
         if($is_admin) {
             $retval['Admin'] = __ADMIN_PAGE__;

@@ -1,8 +1,8 @@
 <?php
 class Ctf extends mysqli {
-	function __construct() {
-		parent::__construct(__HOST__, __USER__, __PASS__, __NAME__);
-	}
+    function __construct() {
+        parent::__construct(__HOST__, __USER__, __PASS__, __NAME__);
+    }
 
     private function get_config() {
         $result = $this->query('SELECT * FROM mun_config');
@@ -32,11 +32,11 @@ class Ctf extends mysqli {
         return $prob_point;
     }
 
-	function check_flag($no, $flag, $username) {
-		$no = (int)$no;
+    function check_flag($no, $flag, $username) {
+        $no = (int)$no;
         $flag = addslashes($flag);
-		$username = addslashes($username);
-		$userip = $_SERVER['REMOTE_ADDR'];
+        $username = addslashes($username);
+        $userip = $_SERVER['REMOTE_ADDR'];
         
         $retval = array(
             'result' => false,
@@ -62,16 +62,16 @@ class Ctf extends mysqli {
         }
 
         // 문제 이름 가져오기
-		$result = $this->query("SELECT name FROM mun_probs WHERE no='{$no}'");
-		$fetch = $result->fetch_array(MYSQLI_ASSOC);
-		$prob_name = addslashes($fetch['name']);
+        $result = $this->query("SELECT name FROM mun_probs WHERE no='{$no}'");
+        $fetch = $result->fetch_array(MYSQLI_ASSOC);
+        $prob_name = addslashes($fetch['name']);
 
-		// 인증 로그 업데이트
-		$this->query("INSERT INTO mun_auth_logs VALUES (NULL, '{$username}', '{$prob_name}', '{$userip}', '{$flag}', now())");
-		$result = $this->query("SELECT * FROM mun_probs WHERE no='{$no}' AND BINARY flag='{$flag}' AND open=1");
+        // 인증 로그 업데이트
+        $this->query("INSERT INTO mun_auth_logs VALUES (NULL, '{$username}', '{$prob_name}', '{$userip}', '{$flag}', now())");
+        $result = $this->query("SELECT * FROM mun_probs WHERE no='{$no}' AND BINARY flag='{$flag}' AND open=1");
 
-		if($fetch = $result->fetch_array(MYSQLI_ASSOC)) { // 정답 플래그
-			$teamname = addslashes($_SESSION['teamname']);
+        if($fetch = $result->fetch_array(MYSQLI_ASSOC)) { // 정답 플래그
+            $teamname = addslashes($_SESSION['teamname']);
             $prob_no = (int)$fetch['no'];
 
             if($username === __ADMIN__) { // admin은 플래그 체크만 해주고 끝
@@ -81,8 +81,8 @@ class Ctf extends mysqli {
             }
 
             // 인증 중복체크
-			$result = $this->query("SELECT * FROM mun_solves WHERE prob_no='{$prob_no}' AND BINARY teamname='{$teamname}'");
-			if($result->fetch_array(MYSQLI_ASSOC)) {
+            $result = $this->query("SELECT * FROM mun_solves WHERE prob_no='{$prob_no}' AND BINARY teamname='{$teamname}'");
+            if($result->fetch_array(MYSQLI_ASSOC)) {
                 $retval['message'] = 'Already solved!'; // 이미 인증한 문제
             }
             else { // 인증 처리
@@ -95,10 +95,10 @@ class Ctf extends mysqli {
                 $retval['result'] = true;
                 $retval['message'] = "You solved the {$prob_name} problem, congrats!"; // 인증 완료 축하메세지
             }
-		}
+        }
 
         return json_encode($retval);
-	}
+    }
 
 
 }

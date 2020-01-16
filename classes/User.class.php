@@ -1,38 +1,38 @@
 <?php
 class User extends mysqli {
-	function __construct() {
-		parent::__construct(__HOST__, __USER__, __PASS__, __NAME__);
-	}
+    function __construct() {
+        parent::__construct(__HOST__, __USER__, __PASS__, __NAME__);
+    }
 
     private function generate_invite_code() { // 초대 코드 생성
         return bin2hex(random_bytes(32));
     }
 
-	function login($data) {
-		$username = addslashes($data['username']);
-		$password = process_password($data['password']);
-		
-		$query = "SELECT * FROM mun_users WHERE BINARY username='{$username}' AND password='{$password}'";
-		$result = $this->query($query);
-		$fetch = $result->fetch_array(MYSQLI_ASSOC);
+    function login($data) {
+        $username = addslashes($data['username']);
+        $password = process_password($data['password']);
+        
+        $query = "SELECT * FROM mun_users WHERE BINARY username='{$username}' AND password='{$password}'";
+        $result = $this->query($query);
+        $fetch = $result->fetch_array(MYSQLI_ASSOC);
         $retval = ['status' => false];
 
-		if($fetch['username']) {
-			if($fetch['username'] === __ADMIN__) {
-				$_SESSION['admin'] = true;
-			}
-			$_SESSION['username'] = $fetch['username'];
+        if($fetch['username']) {
+            if($fetch['username'] === __ADMIN__) {
+                $_SESSION['admin'] = true;
+            }
+            $_SESSION['username'] = $fetch['username'];
             $_SESSION['teamname'] = $fetch['teamname'];
-			$retval['status'] = true;
-		}
+            $retval['status'] = true;
+        }
 
         return json_encode($retval);
-	}
+    }
 
-	function register($data) {
-		$usertype = addslashes($data['usertype']);
-		$username = addslashes(trim(mb_substr($data['username'], 0, 50)));
-		$password = process_password($data['password']);
+    function register($data) {
+        $usertype = addslashes($data['usertype']);
+        $username = addslashes(trim(mb_substr($data['username'], 0, 50)));
+        $password = process_password($data['password']);
         $email = addslashes(trim(mb_substr($data['email'], 0, 50)));
         $country = addslashes($data['country']);
         $retval = ['status' => false];
@@ -56,8 +56,8 @@ class User extends mysqli {
         }
 
         // 유저네임 중복 체크
-		$result = $this->query("SELECT * FROM mun_users WHERE BINARY username='{$username}'");
-		if($result->fetch_array(MYSQLI_ASSOC)) {
+        $result = $this->query("SELECT * FROM mun_users WHERE BINARY username='{$username}'");
+        if($result->fetch_array(MYSQLI_ASSOC)) {
             $retval['message'] = "Already exists user name!";
             return json_encode($retval);
         }
@@ -116,8 +116,8 @@ class User extends mysqli {
             }
         }
 
-		return json_encode($retval);
-	}
+        return json_encode($retval);
+    }
 
     function change_password($data, $username) {
         $current_password = process_password($data['current_password']);
