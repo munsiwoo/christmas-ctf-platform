@@ -15,7 +15,7 @@ point = (min_point+(max_point-min_point)/(1+(max(0,(solve_cnt)-1)/4.0467890)**3.
 point = round(value)
 ```
 
-> Default account (when password salt is "255d943bf821b38d386935b775a01a21")
+> Default account (when password salt is "255d943bf821b38d386935b775a01a21")  
 > Salt can be modified in /config/config.php
 
 | Username     | Password     |
