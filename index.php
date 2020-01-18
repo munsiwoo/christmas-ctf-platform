@@ -22,4 +22,4 @@ $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $is_login = isset($_SESSION['username']); // 로그인 여부, 유저 이름 체크
 $is_admin = isset($_SESSION['admin']); // 어드민 체크
 
-$Controller = new Controller($http_method, $request_uri, $is_login, $is_admin);
+new Controller($http_method, $request_uri, $is_login, $is_admin);

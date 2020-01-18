@@ -91,22 +91,17 @@ class Render extends mysqli {
         $admin_username = addslashes(__ADMIN__);
         $result = $this->query("SELECT u.teamname teamname, ifnull(sum(p.point), 0) point, ifnull(max(s.auth_date), min(u.reg_date)) last_auth FROM mun_users u LEFT OUTER JOIN mun_solves s ON BINARY u.username=s.username LEFT OUTER JOIN mun_probs p ON s.prob_no=p.no WHERE BINARY u.username!='{$admin_username}' GROUP BY BINARY u.teamname ORDER BY point DESC, last_auth");
         // ifnull(max(s.auth_date), min(u.reg_date)) -> 푼 문제가 있으면 가장 최근 인증시간 가져오고 없으면 가입 날짜
-    
         $retval = [];
-        $place = 0;
+        $place = 1;
 
         while($fetch = $result->fetch_array(MYSQLI_ASSOC)) {
-            $fetch = array_map('htmlspecialchars', $fetch);
-            $place++;
-
             array_push($retval, [
-                'place' => $place,
-                'teamname' => $fetch['teamname'],
+                'place' => $place++,
+                'teamname' => htmlspecialchars($fetch['teamname']),
                 'point' => $fetch['point'],
                 'last_auth' => $fetch['last_auth'],
             ]);
         }
-
         return $retval;
     }
 
@@ -125,7 +120,6 @@ class Render extends mysqli {
                 $fetch['auth_date'],
             ]);
         }
-
         return $solved_probs;
     }
 
