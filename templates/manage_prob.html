@@ -144,11 +144,11 @@
                     <form class="add-prob-form" onsubmit="edit_prob(this, @var($prob['no'])); return false;">
                         <div class="card bg-light mb-3" style="text-align: left;">
                             <div class="card-header" style="font-size: 13px;">🎁
-                                <input type="text" name="name" placeholder="Problem name" value="@var(htmlspecialchars($prob['name']))">
-                                <input type="text" name="field" placeholder="Problem field" value="@var(htmlspecialchars($prob['field']))">
+                                <input type="text" name="name" placeholder="Problem name" value="@var($prob['name'])">
+                                <input type="text" name="field" placeholder="Problem field" value="@var($prob['field'])">
                             </div>
                             <div class="card-body" style="text-align: left;">
-                                <textarea name="contents" placeholder="Problem description (you can use html)">@var(htmlspecialchars($prob['contents']))</textarea>
+                                <textarea name="contents" placeholder="Problem description (you can use html)">@var($prob['contents'])</textarea>
                                 <div class="row">
                                     <div class="col-md-6 text-left">
                                         <input type="text" name="flag" placeholder="비워두면 기존 플래그 유지됨">
@@ -169,8 +169,6 @@
                         </div>
                     </form>
                 @endforeach
-
-
             </div>
             <div class="col-md-1"></div>
         </div>

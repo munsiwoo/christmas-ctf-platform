@@ -4,7 +4,7 @@ class Admin extends mysqli {
         parent::__construct(__HOST__, __USER__, __PASS__, __NAME__);
     }
 
-    private function is_flag($flag, $prob_name) {
+    private function is_flag($flag, $prob_name) { // 인증 로그에서 맞는 플래그인지 구분해줄 때 사용하는 함수
         $flag = addslashes(htmlspecialchars_decode($flag));
         $prob_name = addslashes(htmlspecialchars_decode($prob_name));
         $result = $this->query("SELECT flag FROM mun_probs WHERE BINARY flag='{$flag}' AND name='{$prob_name}'");
@@ -15,14 +15,14 @@ class Admin extends mysqli {
         return false;
     }
 
-    private function get_teamname($username) {
+    private function get_teamname($username) { // 유저 이름으로 팀명 가져오는 함수
         $username = addslashes(htmlspecialchars_decode($username));
         $result = $this->query("SELECT teamname FROM mun_users WHERE BINARY username='{$username}'");
         $teamname = $result->fetch_array(MYSQLI_NUM)[0];
         return $teamname;
     }
 
-    private function get_solve_cnt($prob_no) {
+    private function get_solve_cnt($prob_no) { // 문제 번호로 해결한 팀 수 가져오는 함수
         $prob_no = (int)$prob_no;
         $result = $this->query("SELECT count(*) FROM mun_solves WHERE prob_no='{$prob_no}'");
         $solve_cnt = (int)$result->fetch_array(MYSQLI_NUM)[0];
@@ -30,7 +30,7 @@ class Admin extends mysqli {
         return $solve_cnt;
     }
 
-    private function get_dynamic_point($prob_no) {
+    private function get_dynamic_point($prob_no) { // 문제 번호로 해당 문제 점수 계산하는 함수
         $config = $this->get_config();
         $max_point = (int)$config['max_point'];
         $min_point = (int)$config['min_point'];
@@ -44,8 +44,9 @@ class Admin extends mysqli {
         return $prob_point;
     }
 
-    private function update_point_all_prob() {
+    private function update_point_all_prob() { // max_point 변경하면 모든 문제에 적용되도록 하는 함수
         $result = $this->query("SELECT no FROM mun_probs");
+
         while($fetch = $result->fetch_array(MYSQLI_NUM)) {
             $new_point = $this->get_dynamic_point($fetch[0]);
             $this->query("UPDATE mun_probs SET point='{$new_point}' WHERE no='{$fetch[0]}'");
@@ -59,23 +60,23 @@ class Admin extends mysqli {
         return $config;
     }
 
-    function get_all_prob_list() { // 모든 문제 출력
+    function get_all_prob_list() { // 모든 문제 출력하는 함수
         $result = $this->query("SELECT * FROM mun_probs ORDER BY no");
-        $retval = array();
+        $retval = [];
 
         while($fetch = $result->fetch_array(MYSQLI_ASSOC)) {
             array_push($retval, [
                 "no" => $fetch['no'],
-                "name" => $fetch['name'],
-                "field" => $fetch['field'],
-                "contents" => $fetch['contents'],
+                "name" => htmlspecialchars($fetch['name']),
+                "field" => htmlspecialchars($fetch['field']),
+                "contents" => htmlspecialchars($fetch['contents']),
                 "open" => (int)$fetch['open'],
             ]);
         }
         return $retval;
     }
 
-    function get_auth_logs() {
+    function get_auth_logs() { // 인증 로그 최근 100개 가져오는 함수
         $result = $this->query("SELECT * FROM mun_auth_logs ORDER BY no DESC limit 0, 100");
         $retval = [];
 
@@ -166,33 +167,33 @@ class Admin extends mysqli {
         return json_encode(['result' => true]);
     }
 
-    function get_solvers() {
+    function get_solvers() { // 전체 문제에 대한 솔버 표시해주는 함수
         $result = $this->query("SELECT mun_probs.no as prob_no, mun_probs.name as prob_name, mun_solves.username as username FROM mun_probs LEFT JOIN mun_solves ON mun_probs.no=mun_solves.prob_no");
-        $retval = array();
-        $append_control = True;
+        $retval = [];
+        $append_control = true;
 
         while($fetch = $result->fetch_array(MYSQLI_ASSOC)) {
             $fetch = array_map('htmlspecialchars', $fetch);
             foreach($retval as $index=>$prob) {
                 if($prob['prob_no'] == $fetch['prob_no']) {
                     $retval[$index]['username'] .= ",{$fetch['username']}";
-                    $append_control = False;
+                    $append_control = false;
                 }
             }
             if($append_control) {
-                array_push($retval, array(
+                array_push($retval, [
                     "prob_no" => $fetch['prob_no'],
                     "prob_name" => $fetch['prob_name'],
                     "username" => $fetch['username'],
-                ));
+                ]);
             }
-            $append_control = True;
+            $append_control = true;
         }
         return $retval;
     }
 
     function manage_all_prob($mode) {
-        $open = ($mode == 'open') ? '1' : '0';
+        $open = $mode == 'open' ? 1 : 0;
         $this->query("UPDATE mun_probs SET open='{$open}'");
         return true;
     }
@@ -227,7 +228,7 @@ class Admin extends mysqli {
         return $retval;
     }
 
-    function delete_team($teamname) { // 팀명으로 팀 삭제
+    function delete_team($teamname) { // 팀명으로 팀 삭제하는 함수
         $teamname = addslashes($teamname);
         $retval = ['status' => false];
 
