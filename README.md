@@ -50,8 +50,9 @@ docker-compose build
 docker-compose up -d
 ```
 
-Connect to `localhost:9999` port.
-The db connection information can be modified by modifying the file below.
+ Connect to `localhost:9999` port.  
+
+ The db connection information can be modified by modifying the file below.
 
 * docker-compose.yml (MYSQL environments)
 * /src/config/config.php (`__HOST__`, `__USER__`, `__PASS__`, `__NAME__`)
