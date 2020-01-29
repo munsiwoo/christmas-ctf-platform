@@ -13,28 +13,33 @@ class Controller {
         $Render = new Render();
         $MunTemplate = new MunTemplate(__TEMPLATES__);
          
-        if($http_method == 'POST') { // CSRF Mitigation
+        /*
+        // config/config.php에서 "__DOMAIN__" 설정해야 사용 가능
+
+        if($http_method == 'POST') { // CSRF 방지
             $referer = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
             if($referer !== __DOMAIN__) die('Not allowed referer!');
         }
+        */
 
-        /* load header */
+        /* header 부분 */
         if($http_method == 'GET' && !in_array($request_uri, __HIDDEN_HEADER__)) {
             $top_menu = $Render->get_top_menu($is_login, $is_admin);
-            $timestamp = (int)(time() / 1000);
             $MunTemplate->render_template('header.html', [
                 'title' => __TITLE__,
                 'top_menu' => $top_menu,
-                'timestamp' => $timestamp
+                'timestamp' => (int)(time() / 1000), // css, js 캐시 비울 때
             ]);
         }
 
         switch($request_uri) {
             case '/' :
+                /*
                 if(!isset($_COOKIE['sponsor'])) {
                     setcookie('sponsor', 'foo', time() + 7200);
                     header('Location: /sponsor');
                 }
+                */
                 $MunTemplate->render_template('index.html');
                 break;
 
@@ -170,7 +175,7 @@ class Controller {
                 echo str_replace(' ', 'T', $config['start_time']);
                 break;
 
-            // 아래는 어드민 페이지 라우팅
+            // 아래부턴 어드민 페이지
             case '/admin' :
                 if(!$is_admin) redirect_url('/', 'You are not admin!');
                 $MunTemplate->render_template('admin.html');
@@ -239,8 +244,8 @@ class Controller {
             case '/admin/reset_password' :
                 if(!$is_admin) redirect_url('/', 'You are not admin!');
                 if($http_method == 'POST') {
-                    if($_POST['username'] === __ADMIN__) {
-                        echo json_encode(['status'=>false, 'message'=>'melong zz']);
+                    if($_POST['username'] === __ADMIN__) { // 어드민은 비번 랜덤 리셋 불가
+                        echo json_encode(['status' => false, 'message' => 'melong']);
                         break;
                     }
                     echo $Admin->reset_password($_POST['username']);
@@ -253,7 +258,7 @@ class Controller {
                 if(!$is_admin) redirect_url('/', 'You are not admin!');
                 if($http_method == 'POST') {
                     if($_POST['teamname'] === $_SESSION['teamname']) { // 어드민 팀은 삭제 불가
-                        echo json_encode(['status'=>false, 'message'=>'lol']);
+                        echo json_encode(['status' => false, 'message' => 'melong']);
                         break;
                     }
                     echo $Admin->delete_team($_POST['teamname']);
@@ -307,7 +312,7 @@ class Controller {
     
         }
 
-        /* load footer */
+        /* footer 부분 */
         if($http_method == 'GET' && !in_array($request_uri, __HIDDEN_HEADER__)) {
             $MunTemplate->render_template('footer.html');
         }

@@ -1,5 +1,4 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+09:00"; /* Asia/Seoul (UTC+09:00) */
 SET NAMES utf8mb4;
 
 CREATE TABLE `mun_auth_logs` (

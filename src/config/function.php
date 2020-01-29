@@ -1,25 +1,25 @@
 <?php
-function redirect_url($url, $msg="") { // redirect function
+function redirect_url($url, $msg="") { // 리다이렉트 함수
 	$execute  = "<script>location.href=\"{$url}\";";
 	$execute .= strlen($msg) ? 'alert("'.addslashes($msg).'");' : '';
 	$execute .= '</script>'; die($execute);
 }
 
-function backward_url($msg="") { // history backward
+function backward_url($msg="") { // 이전 URL로
 	$execute  = '<script>history.back();';
 	$execute .= strlen($msg) ? 'alert("'.addslashes($msg).'");' : '';
 	$execute .= '</script>'; die($execute);
 }
 
-function process_password($password) {
+function process_password($password) { // 패스워드 해싱 방식
 	return md5(hash('sha256', sha1(md5($password).__SALT__)));
 }
 
-function anti_truncate_attack($data, $size=100) { // anti mysql truncate attack
+function anti_truncate_attack($data, $size=100) { // mysql truncate 공격 방지 함수
 	return substr($data, 0, $size);
 }
 
-function get_real_ip() {
+function get_real_ip() { // vps 호스팅 서버를 위한 ip가져오는 함수
     if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
         $ip = $_SERVER['HTTP_CLIENT_IP'];
     }

@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  www:
+    build: ./compose/apache
+    container_name: christmas_ctf_www
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "9999:80"
+    links:
+      - db
+
+  db:
+    image: mariadb:latest
+    restart: always
+    container_name: christmas_ctf_db
+    volumes:
+      - ./init/mysql:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_USER=mun_user
+      - MYSQL_PASSWORD=mun_pass
+      - MYSQL_DATABASE=christmas_ctf
+      - TZ="Asia/Seoul"
