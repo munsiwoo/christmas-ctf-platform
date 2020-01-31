@@ -50,7 +50,7 @@ docker-compose build
 docker-compose up -d
 ```
 
- Connect to `localhost:9999` port.  
+ Connect to `localhost:9999`  
 
  The db connection information can be modified by modifying the file below.
 
