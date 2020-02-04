@@ -39,20 +39,19 @@ The `docker` and `docker-compose` must be installed first. (`apt install docker 
 #### Step 1. Download the repository.
 
 ```bash
-git clone https://github.com/munsiwoo/christmas-ctf-platform.git
-cd christmas-ctf-platform
+1. git clone https://github.com/munsiwoo/christmas-ctf-platform.git
+2. cd christmas-ctf-platform
 ```
 
 #### Step 2. Run the docker-compose
 
 ```bash
-docker-compose build
-docker-compose up -d
+3. docker-compose build
+4. docker-compose up -d
 ```
 
- Connect to `localhost:9999`  
-
- The db connection information can be modified by modifying the file below.
+When the installation is complete, connect to `localhost:9999`   
+The db connection information can be modified by modifying the file below.
 
 * docker-compose.yml (MYSQL environments)
 * /src/config/config.php (`__HOST__`, `__USER__`, `__PASS__`, `__NAME__`)
