@@ -34,7 +34,7 @@ The platform is based on [munsiwoo/simple-mvc-php](https://github.com/munsiwoo/s
 
 ## How to install?
 
-The `docker` and `docker-compose` must be installed first. (`apt install docker docker-compose`)
+You should be install `docker` and `docker-compose` first. (`apt install docker docker-compose`)
 
 #### Step 1. Download the repository.
 
@@ -50,7 +50,7 @@ The `docker` and `docker-compose` must be installed first. (`apt install docker 
 4. docker-compose up -d
 ```
 
-When the installation is complete, connect to `localhost:9999`   
+When the installation is complete, connect to `http://localhost:9999`   
 The db connection information can be modified by modifying the file below.
 
 * docker-compose.yml (MYSQL environments)
