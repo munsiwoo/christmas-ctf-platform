@@ -2,21 +2,21 @@
 [![GitHub license](https://img.shields.io/github/license/munsiwoo/christmas-ctf-platform.svg)](https://github.com/munsiwoo/christmas-ctf-platform/blob/master/LICENSE)
 
 # Christmas CTF Platform
-### What is this?
+### What is this platform?
 
-This is the platform I used for Christmas CTF 2019. (challenges is [here](https://github.com/Aleph-Infinite/2019-Christmas-CTF).)  
-I developed it in pure PHP and designed it with MVC pattern. (`Apache2` + `PHP7` + `MariaDB`)  
-It is a Jeopardy style platform using Dynamic Scoring.  
+This is a platform I used for 2019 Christmas CTF. (The challenges are [here](https://github.com/Aleph-Infinite/2019-Christmas-CTF).)  
+I developed it in pure PHP(with apache2) and designed it with MVC pattern.
+It is Jeopardy style platform using Dynamic Scoring.  
 
-> Dynamic Scoring pseudo code (default, min_point=100 / max_point=1000)
+> Dynamic scoring pseudo code (default, min_point=100 / max_point=1000)
 
 ```
 point = (min_point+(max_point-min_point)/(1+(max(0,(solve_cnt)-1)/4.0467890)**3.84))
 point = round(value)
 ```
 
-> Default accounts  
-> Salt can be modified in /src/config/config.php
+> Default accounts (for test)  
+> Password hash salt can be modified in /src/config/config.php
 
 | Username     | Password     |
 | ------------ | ------------ |
