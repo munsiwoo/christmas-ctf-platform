@@ -34,7 +34,7 @@ The platform is based on [munsiwoo/simple-mvc-php](https://github.com/munsiwoo/s
 
 ## How to install?
 
-You should be install `docker` and `docker-compose` first. (`apt install docker docker-compose`)
+First, you should install `docker` and `docker-compose` (`apt install docker docker-compose`)
 
 #### Step 1. Download the repository.
 
