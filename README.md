@@ -5,7 +5,7 @@
 ### What is this platform?
 
 This is a platform I used for 2019 Christmas CTF. (The challenges are [here](https://github.com/Aleph-Infinite/2019-Christmas-CTF).)  
-I developed it in pure PHP(with apache2) and designed it with MVC pattern.
+I developed it in pure PHP(with apache2) and designed it with MVC pattern.  
 It is Jeopardy style platform using Dynamic Scoring.  
 
 > Dynamic scoring pseudo code (default, min_point=100 / max_point=1000)
