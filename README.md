@@ -11,8 +11,7 @@ It is Jeopardy style platform using Dynamic Scoring.
 > Dynamic scoring pseudo code (default, min_point=100 / max_point=1000)
 
 ```
-point = (min_point+(max_point-min_point)/(1+(max(0,(solve_cnt)-1)/4.0467890)**3.84))
-point = round(value)
+round(min_point+(max_point-min_point)/(1+(max(0,(solve_cnt)-1)/4.0467890)**3.84))
 ```
 
 > Default accounts (for test)  
