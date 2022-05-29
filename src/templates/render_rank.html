@@ -1,3 +1,5 @@
+@import(header.html)
+
 <tbody id="rank_tbody">
     @mun foreach($rank_list as $rank)
         @mun if(htmlspecialchars_decode($rank['teamname']) === $_SESSION['teamname'])
@@ -22,3 +24,5 @@
         </tr>
     @endforeach
 </tbody>
+
+@import(footer.html)
