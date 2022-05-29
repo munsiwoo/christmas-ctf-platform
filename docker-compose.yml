@@ -22,4 +22,4 @@ services:
       - MYSQL_USER=mun_user
       - MYSQL_PASSWORD=mun_pass
       - MYSQL_DATABASE=christmas_ctf
-      - TZ="Asia/Seoul"
+      - TZ=Asia/Seoul
