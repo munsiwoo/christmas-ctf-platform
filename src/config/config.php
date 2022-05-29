@@ -3,45 +3,23 @@
 define('__TEMPLATES__', $_SERVER['DOCUMENT_ROOT'].'/templates');
 define('__STATIC__', $_SERVER['DOCUMENT_ROOT'].'/static');
 
-/* Set database */
-define('__HOST__', 'db');
-define('__USER__', 'mun_user');
-define('__PASS__', 'mun_pass');
-define('__NAME__', 'christmas_ctf');
+/* Set MySQL connection info */
+define('__HOST__', 'db'); // Do not change this
+define('__USER__', 'mun_user'); // Default MySQL username
+define('__PASS__', 'mun_pass'); // Default MySQL password
+define('__NAME__', 'christmas_ctf'); // Default DB Name
 
 /* Set site */
-define('__SALT__', '255d943bf821b38d386935b775a01a21'); // 변경하면 가입했던 유저는 로그인 안됨
-define('__ADMIN__', 'admin'); // 어드민 유저네임
-define('__TITLE__', 'Christmas CTF'); // <title> 태그에 들어가는 타이틀
-define('__RANK_REFRESH_DELAY__', 3000); // 1000 = 1초
-// define('__DOMAIN__', ''); // 도메인 지정 (CSRF 방지)
+define('__SALT__', '255d943bf821b38d386935b775a01a21'); // Password salt
+define('__ADMIN__', 'admin'); // Admin username
+
+define('__RANK_REFRESH_DELAY__', 3000); // Default 3 sec
 define('__ADMIN_PAGE__', '/admin'); // 어드민 페이지 주소
 
 /* Set user type */
 define('__USER_TYPE__', [
     'captain',
     'member',
-]);
-
-/* Set top menu */
-define('__USER_MENU__', [
-    'Notice' => '/notice',
-    'Rank' => '/rank',
-    'Prob' => '/prob',
-    'Mypage' => '/mypage',
-    'Logout' => '/logout',
-]); // 로그인 했을 때 보이는 상단 메뉴
-
-define('__GUEST_MENU__', [
-    'Notice' => '/notice',
-    'Rank' => '/rank',
-    'Login' => '/login',
-    'Register' => '/register',
-]); // 로그인 안했을 때 보이는 상단 메뉴
-
-define('__HIDDEN_HEADER__', [ // header, footer 표시 안하는 페이지
-    '/get_countdown',
-    '/robots.txt',
 ]);
 
 /* Countries */
