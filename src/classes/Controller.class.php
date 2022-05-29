@@ -22,24 +22,8 @@ class Controller {
         }
         */
 
-        /* header 부분 */
-        if($http_method == 'GET' && !in_array($request_uri, __HIDDEN_HEADER__)) {
-            $top_menu = $Render->get_top_menu($is_login, $is_admin);
-            $MunTemplate->render_template('header.html', [
-                'title' => __TITLE__,
-                'top_menu' => $top_menu,
-                'timestamp' => (int)(time() / 1000), // css, js 캐시 비울 때
-            ]);
-        }
-
         switch($request_uri) {
             case '/' :
-                /*
-                if(!isset($_COOKIE['sponsor'])) {
-                    setcookie('sponsor', 'foo', time() + 7200);
-                    header('Location: /sponsor');
-                }
-                */
                 $MunTemplate->render_template('index.html');
                 break;
 
@@ -310,11 +294,6 @@ class Controller {
                 header("HTTP/1.1 404 Not Found");
                 $MunTemplate->render_template('404.html');
     
-        }
-
-        /* footer 부분 */
-        if($http_method == 'GET' && !in_array($request_uri, __HIDDEN_HEADER__)) {
-            $MunTemplate->render_template('footer.html');
         }
     }
 }
