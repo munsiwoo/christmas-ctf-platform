@@ -12,7 +12,7 @@
     <meta property="og:url" content="https://x-mas.aleph.kr/">
     <meta property="og:description" content="Welcome to Christmas CTF!">
     <meta property="og:image" content="/static/img/thumb.png">
-    <title>@var($title)</title>
+    <title>Christmas CTF</title>
 </head>
 <body id="wrapper">
 <div class="winter-is-coming">
@@ -35,9 +35,22 @@
         </button>
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
             <ul class="navbar-nav" style="font-size: 18px;">
-                @mun foreach($top_menu as $name=>$url)
-                    <li class="nav-item"><a class="nav-link" href="@var($url)">@var($name)</a></li>
-                @endforeach 
+                @mun if(isset($_SESSION['admin']))
+                    <li class="nav-item"><a class="nav-link" href="/admin"><button style="font-size: 14px;">ADMIN</button></a></li>
+                @endif
+
+                @mun if(isset($_SESSION['username']))
+                    <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/prob">Challenges</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/rank">Scoreboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/mypage">Mypage</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                @mun else
+                    <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/rank">Scoreboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                @endif
             </ul>
         </div>
     </div>
