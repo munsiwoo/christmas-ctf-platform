@@ -4,9 +4,9 @@
 function user_register() {
     let data = {
         "usertype": "member",
-    	"invite_code": $("#invite_code").val(),
+        "invite_code": $("#invite_code").val(),
         "username": $("#username").val(),
-    	"password": $("#password").val(),
+        "password": $("#password").val(),
         "email": $("#email").val(),
         "country": $("#country").val(),
     };
@@ -33,11 +33,11 @@ function user_register() {
         <img src="/static/img/sibariza.png" style="width:100px; height: auto; margin-left: 70%;">
 
         <form class="login-form" onsubmit="user_register(); return false;" class="text-left">
-        	<input type="text" id="invite_code" name="invite_code" placeholder="Invite code" maxlength="64" autofocus="" required=""><br>
+            <input type="text" id="invite_code" name="invite_code" placeholder="Invite code" maxlength="64" autofocus="" required=""><br>
             <span style="font-weight: 500; font-size: 14px;">Invite code는 팀장/팀원 마이페이지에서 확인하실 수 있습니다.</span><br>
             <br>
             <input type="text" id="username" name="username" placeholder="Username" maxlength="50" autofocus="" required=""><br>
-        	<input type="password" id="password" placeholder="Password" maxlength="50" minlength="5" required=""><br>
+            <input type="password" id="password" placeholder="Password" maxlength="50" minlength="5" required=""><br>
             <input type="email" id="email" name="email" placeholder="Email" maxlength="70" required=""><br>
             <br>
             <select id="country" name="country">

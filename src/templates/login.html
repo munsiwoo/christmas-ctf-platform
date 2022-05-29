@@ -3,8 +3,8 @@
 <script>
 function user_login() {
     let data = {
-    	"username":$("#username").val(),
-    	"password":$("#password").val()
+        "username":$("#username").val(),
+        "password":$("#password").val()
     };
     
     $.post("/login", data, function(res) {
@@ -35,8 +35,8 @@ function user_login() {
         <div style="font-weight: 500; margin-left: 30%">Enjoy~ </div>
         <img src="/static/img/sibariza.png" style="width:100px; height: auto; margin-left: 40%;">
         <form class="login-form" onsubmit="user_login(); return false;">
-        	<input type="text" id="username" name="username" placeholder="Username" maxlength="50" autofocus=""><br>
-        	<input type="password" id="password" placeholder="Password" maxlength="50"><br>
+            <input type="text" id="username" name="username" placeholder="Username" maxlength="50" autofocus=""><br>
+            <input type="password" id="password" placeholder="Password" maxlength="50"><br>
             <hr>
           <input type="submit" class="btn btn-lg btn-danger" value="Login">
         </form>
