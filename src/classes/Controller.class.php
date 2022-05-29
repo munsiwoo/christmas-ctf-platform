@@ -175,10 +175,10 @@ class Controller {
                 echo str_replace(' ', 'T', $config['start_time']);
                 break;
 
-            // 아래부턴 어드민 페이지
+            // 여기서부터 어드민 페이지
             case '/admin' :
                 if(!$is_admin) redirect_url('/', 'You are not admin!');
-                $MunTemplate->render_template('admin.html');
+                $MunTemplate->render_template('admin/admin.html');
                 break;
 
             case '/admin/manage_prob' :
@@ -193,7 +193,7 @@ class Controller {
                     break;
                 }
                 $prob_list = $Admin->get_all_prob_list();
-                $MunTemplate->render_template('manage_prob.html', ['prob_list' => $prob_list]);
+                $MunTemplate->render_template('admin/manage_prob.html', ['prob_list' => $prob_list]);
                 break;
 
             case '/admin/manage_notice' :
@@ -208,20 +208,20 @@ class Controller {
                     break;
                 }
                 $notice_list = $Render->get_notice_list();
-                $MunTemplate->render_template('manage_notice.html', ['notice_list' => $notice_list]);
+                $MunTemplate->render_template('admin/manage_notice.html', ['notice_list' => $notice_list]);
                 break;
 
             case '/admin/auth_log' :
                 if(!$is_admin) redirect_url('/', 'You are not admin!');
                 $auth_logs = $Admin->get_auth_logs();
-                $MunTemplate->render_template('auth_log.html', ['auth_logs' => $auth_logs]);
+                $MunTemplate->render_template('admin/auth_log.html', ['auth_logs' => $auth_logs]);
                 break;
 
             case '/render/auth_log' :
                 if(!$is_admin) redirect_url('/', 'You are not admin!');
                 if($http_method == 'POST') {
                     $auth_logs = $Admin->get_auth_logs();
-                    $MunTemplate->render_template('render_auth_log.html', ['auth_logs' => $auth_logs]);
+                    $MunTemplate->render_template('admin/render_auth_log.html', ['auth_logs' => $auth_logs]);
                     break;
                 }
                 redirect_url('/');
@@ -230,7 +230,7 @@ class Controller {
             case '/admin/view_solver' :
                 if(!$is_admin) redirect_url('/', 'You are not admin!');
                 $solvers = $Admin->get_solvers();
-                $MunTemplate->render_template('view_solver.html', ['solvers' => $solvers]);
+                $MunTemplate->render_template('admin/view_solver.html', ['solvers' => $solvers]);
                 break;
 
             case '/admin/all_prob' :
@@ -251,7 +251,7 @@ class Controller {
                     echo $Admin->reset_password($_POST['username']);
                     break;
                 }
-                $MunTemplate->render_template('reset_password.html');
+                $MunTemplate->render_template('admin/reset_password.html');
                 break;
 
             case '/admin/delete_team' :
@@ -264,13 +264,13 @@ class Controller {
                     echo $Admin->delete_team($_POST['teamname']);
                     break;
                 }
-                $MunTemplate->render_template('delete_team.html');
+                $MunTemplate->render_template('admin/delete_team.html');
                 break;
 
             case '/admin/user_list' :
                 if(!$is_admin) redirect_url('/', 'You are not admin!');
                 $user_list = $Admin->get_user_list();
-                $MunTemplate->render_template('user_list.html',
+                $MunTemplate->render_template('admin/user_list.html',
                     [
                         'user_list' => $user_list,
                         'user_cnt' => count($user_list)
@@ -291,7 +291,7 @@ class Controller {
                 $max_point = $config['max_point'];
                 $min_point = $config['min_point'];
 
-                $MunTemplate->render_template('edit_config.html', [
+                $MunTemplate->render_template('admin/edit_config.html', [
                     'start_date' => "{$start_time['y']}-{$start_time['m']}-{$start_time['d']}",
                     'start_time' => "{$start_time['h']}:{$start_time['i']}:{$start_time['s']}",
                     'end_date' => "{$end_time['y']}-{$end_time['m']}-{$end_time['d']}",
