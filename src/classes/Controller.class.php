@@ -14,21 +14,18 @@ class Controller {
         $MunTemplate = new MunTemplate(__TEMPLATES__);
          
         /*
-        // config/config.php에서 "__DOMAIN__" 설정해야 사용 가능
+        // CSRF Mitigation
+        $DOMAIN = 'yourdomain.com'; // example
 
         if($http_method == 'POST') { // CSRF 방지
             $referer = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
-            if($referer !== __DOMAIN__) die('Not allowed referer!');
+            if($referer !== $DOMAIN) die('Not allowed referer!');
         }
         */
 
         switch($request_uri) {
             case '/' :
                 $MunTemplate->render_template('index.html');
-                break;
-
-            case '/sponsor' :
-                $MunTemplate->render_template('sponsor.html');
                 break;
 
             case '/logout' :
@@ -159,7 +156,7 @@ class Controller {
                 echo str_replace(' ', 'T', $config['start_time']);
                 break;
 
-            // 여기서부터 어드민 페이지
+            // Below is the admin page
             case '/admin' :
                 if(!$is_admin) redirect_url('/', 'You are not admin!');
                 $MunTemplate->render_template('admin/admin.html');
