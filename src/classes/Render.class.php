@@ -4,14 +4,6 @@ class Render extends mysqli {
         parent::__construct(__HOST__, __USER__, __PASS__, __NAME__);
     }
 
-    function get_top_menu($is_login, $is_admin) { // 상단 메뉴바
-        $retval = $is_login ? __USER_MENU__ : __GUEST_MENU__;
-        if($is_admin) {
-            $retval['Admin'] = __ADMIN_PAGE__;
-        }
-        return $retval;
-    }
-
     private function get_solved_probs_from_team($teamname) { // 팀이름으로 푼 문제 가져오는 함수
         $teamname = addslashes($teamname);
         $result = $this->query("SELECT * FROM mun_solves WHERE BINARY teamname='{$teamname}'");
